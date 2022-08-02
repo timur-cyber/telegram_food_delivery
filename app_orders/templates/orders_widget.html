@@ -1,0 +1,49 @@
+{% extends "panel.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static "css/style.css" %}>
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+    <div class="main">
+        <h1 class="main-header">Все заказы</h1>
+        {% if orders %}
+        <ul class="order-list">
+            <li href="#" class="order-item">
+                <div class="item item-container">
+                    <span>ID</span>
+                </div>
+                <div class="item item-container">
+                    Дата
+                </div>
+                <div class="item item-container">
+                    Статус заказа
+                </div>
+            </li>
+            {% for order in orders %}
+            <a href="/orders/{{ order.id }}" class="order-item">
+                <div class="item item-container">
+                    <span>#{{ order.id }}</span>
+                </div>
+                <div class="item item-container">
+                    {{ order.formatted_date }}
+                </div>
+                <div class="item item-container">
+                    {{ order.status }}
+                </div>
+            </a>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <h2 class="none-header">Нет заказов</h2>
+        {% endif %}
+    </div>
+    {% endblock %}
+</body>
+</html>

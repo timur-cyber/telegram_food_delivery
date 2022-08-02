@@ -1,0 +1,187 @@
+
+@font-face {
+    font-family: "Montserrat";
+    src: url(../fonts/Montserrat-Bold.woff2) format("woff2"),
+        url(../fonts/Montserrat-Bold.woff) format("woff2");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url(../fonts/Montserrat-Regular.woff2) format("woff2"),
+        url(../fonts/Montserrat-Regular.woff) format("woff");
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+}
+
+:root {
+    --main: #44B78B;
+    --accent: #f5dd5d;
+}
+
+.sidenav {
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+    background-color: var(--main);
+    justify-content: center;
+}
+
+.sidenav-header {
+    padding-left: 16px;
+    max-width: 285px;
+    color: var(--accent);
+    font-size: 35px;
+    font-weight: 700;
+    font-family: 'Montserrat';
+}
+
+.sidenav-link {
+    padding: 6px 8px 15px 16px;
+    text-decoration: none;
+    display: block;
+    color: #fff;
+    transition: color .3s ease-in-out;
+    font-size: 25px;
+    font-weight: 400;
+    font-family: 'Montserrat';
+}
+
+.sidenav-link:hover {
+    color: var(--accent);
+}
+
+.logout-link {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    display: block;
+    color: #fff;
+    padding-left: 40px;
+    background-image: url("../img/logout.png");
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    background-position-y: 10px;
+    background-position-x: 16px;
+    text-decoration: underline;
+    font-size: 25px;
+    font-weight: 400;
+    font-family: 'Montserrat';
+}
+
+
+.main {
+    margin-left: 320px;
+    padding: 0px 10px;
+}
+
+.main-header {
+    padding-left: 35px;
+    font-size: 48px;
+    font-weight: 700;
+    font-family: 'Montserrat';
+}
+
+.second-header {
+    padding-left: 35px;
+    font-size: 32px;
+    font-weight: 700;
+    font-family: 'Montserrat';
+}
+
+.none-header {
+    padding-left: 35px;
+    font-size: 36px;
+    font-weight: 700;
+    font-family: 'Montserrat';
+}
+
+.order-item {
+    display: flex;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-bottom: var(--main) 1px solid;
+    transition: background-color .3s ease-in-out;
+    justify-content: space-between;
+}
+
+.order-item:first-child {
+    border-top: var(--main) 1px solid;
+}
+
+.order-item:not(:first-child):hover {
+    background-color: var(--main);
+}
+
+.order-item:not(:first-child):hover > .item {
+    color: #fff;
+}
+
+.item {
+    margin-right: 20px;
+    color: #000;
+    font-size: 25px;
+    font-weight: 400;
+    font-family: 'Montserrat';
+}
+
+.item-container {
+    width: 500px;
+}
+
+.total-container {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: right;
+    font-size: 48px;
+    font-weight: 400;
+    font-family: 'Montserrat';
+}
+
+.total-price {
+    color: var(--main);
+}
+
+.action-btn {
+    display: flex;
+    justify-content: right;
+}
+
+.finish-order-btn {
+    padding: 10px 20px 10px 20px;
+    font-size: 25px;
+    font-weight: 400;
+    font-family: 'Montserrat';
+    background-color: #33EA26;
+    color: #fff;
+    border-radius: 25px;
+    transition: background-color .3s ease-in-out;
+}
+
+.finish-order-btn:hover {
+    background-color: #24C419;
+}
+
+.cancel-order-btn {
+    margin-right: 20px;
+    padding: 10px 20px 10px 20px;
+    font-size: 25px;
+    font-weight: 400;
+    font-family: 'Montserrat';
+    background-color: #FF2525;
+    color: #fff;
+    border-radius: 25px;
+    transition: background-color .3s ease-in-out;
+}
+
+.cancel-order-btn:hover {
+    background-color: #BF1A1A;
+}

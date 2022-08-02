@@ -1,0 +1,5 @@
+/venv/
+/djangoXtelegram/.env
+/django.log
+/bot.log
+/bot_actions.log

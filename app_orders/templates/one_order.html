@@ -1,0 +1,75 @@
+{% extends "panel.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static "css/style.css" %}>
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+    <div class="main">
+        <h1 class="main-header">Заказ #{{ order.id }}</h1>
+        <h2 class="second-header">Клиент: {{ order.user.first_name }}</h2>
+        <h2 class="second-header">Номер: {{ order.user.phone_num }}</h2>
+        <h2 class="second-header">Дата и время: {{ order.formatted_date }}</h2>
+        <h2 class="second-header">Адрес: {{ order.address }}</h2>
+        <h2 class="second-header">Статус: {{ order.status }}</h2>
+        {% if order_items %}
+        <ul class="order-list">
+            <li class="order-item">
+                <div class="item item-container">
+                    <span>Наименование</span>
+                </div>
+                <div class="item item-container">
+                    Цена
+                </div>
+                <div class="item item-container">
+                    Кол-во
+                </div>
+                <div class="item item-container">
+                    Общая цена
+                </div>
+            </li>
+            {% for item in order_items %}
+            <li class="order-item">
+                <div class="item item-container">
+                    <span>{{ item.product.name }}</span>
+                </div>
+                <div class="item item-container">
+                    {{ item.product.price }}
+                </div>
+                <div class="item item-container">
+                    {{ item.quantity }}
+                </div>
+                <div class="item item-container">
+                    {{ item.price_w_quantity }}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="total-container">
+            <span>
+                Всего: <span class="total-price">{{ order.total_price }}</span>
+            </span>
+        </div>
+        {% if order.status == 'Активный' %}
+        <div class="action-btn">
+            <a href="/orders/cancel-order/{{ order.id }}" class="cancel-order-btn">
+                Отменить заказ
+            </a>
+            <a href="/orders/finish-order/{{ order.id }}" class="finish-order-btn">
+                Выполнить заказ
+            </a>
+        </div>
+        {% endif %}
+        {% else %}
+        <h2 class="none-header">Нет предметов</h2>
+        {% endif %}
+    </div>
+    {% endblock %}
+</body>
+</html>

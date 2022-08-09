@@ -5,10 +5,8 @@ services:
     image: postgres
     volumes:
       - ./data/db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=myproject
-      - POSTGRES_USER=myprojectuser
-      - POSTGRES_PASSWORD=12345
+    env_file:
+      - .envs/.postgres
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -16,9 +14,7 @@ services:
       - .:/code
     ports:
       - "8000:8000"
-    environment:
-      - POSTGRES_NAME=myproject
-      - POSTGRES_USER=myprojectuser
-      - POSTGRES_PASSWORD=12345
+    env_file:
+      - .envs/.postgres
     depends_on:
       - db

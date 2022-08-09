@@ -3,3 +3,4 @@
 /django.log
 /bot.log
 /bot_actions.log
+/.envs/.postgres

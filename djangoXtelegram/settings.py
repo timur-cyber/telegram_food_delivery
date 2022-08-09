@@ -191,3 +191,5 @@ LOGGING = {
         },
     }
 }
+
+CSRF_TRUSTED_ORIGINS = ["http://localhost:8020", "http://0.0.0.0:8020"]

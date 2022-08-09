@@ -1,5 +1,6 @@
 import logging
 
+import requests
 import telebot
 
 from app_bot import settings, handlers, keyboard
@@ -18,6 +19,23 @@ class BotEngine:
 
     def __init__(self, TOKEN):
         self.bot = telebot.TeleBot(TOKEN)
+        self.TOKEN = TOKEN
+
+    def start_webhook(self, WEBHOOK_URL):
+        WEBHOOK_URL_TEMPL = 'https://api.telegram.org/bot{TOKEN}/setWebhook?url={URL}/bot/message-handler/'
+        response = requests.get(
+            WEBHOOK_URL_TEMPL.format(TOKEN=self.TOKEN, URL=WEBHOOK_URL)
+        )
+        if response.status_code == 401:
+            raise ValueError('Задан неверный TOKEN')
+        if not WEBHOOK_URL or response.status_code != 200:
+            raise ValueError('Задан неверный WEBHOOK url')
+
+    def stop_webhook(self):
+        WEBHOOK_URL_TEMPL = 'https://api.telegram.org/bot{TOKEN}/setWebhook?remove'
+        response = requests.get(
+            WEBHOOK_URL_TEMPL.format(TOKEN=self.TOKEN)
+        )
 
     def send_message(self, user_id, text, reply_markup=None, parse=None, image=None, second_text=None):
         """

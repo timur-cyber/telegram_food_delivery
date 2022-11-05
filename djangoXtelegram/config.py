@@ -3,6 +3,9 @@ from decouple import config
 # Telegram
 TOKEN = config('TOKEN')
 
+# Ngrok
+NGROK_AUTH_TOKEN = config('NGROK_AUTH_TOKEN')
+
 # Django
 SECRET = config('SECRET')
 REGION = config('REGION')

@@ -76,13 +76,14 @@ SCENARIOS = {
                 'result': None
             },
             'step5': {
-                'text': 'Введите свой адрес',
+                'text': 'Введите свой адрес или отправьте геопозицию',
                 'failure_text': 'Неверное значение',
                 'handler': 'handler_address',
                 'next_step': 'step6',
                 'prev_step': 'step1',
-                'options': None,
-                'result': None
+                'options': 'make_share_location_button',
+                'result': None,
+                'location': True,
             },
             'step6': {
                 'text': 'Ваш заказ принят!',
@@ -111,11 +112,11 @@ SCENARIOS = {
             },
             'step2': {
                 'text': 'Введите свой номер:',
-                'failure_text': 'Что-то явно пошло не так, введи правильное значение',
+                'failure_text': 'Что-то явно пошло не так, введите правильное значение',
                 'handler': 'handler_phone',
                 'next_step': 'step3',
                 'prev_step': 'step1',
-                'options': None,
+                'options': 'make_share_contact_button',
                 'action': None,
                 'result': None,
             },
@@ -140,7 +141,7 @@ SCENARIOS = {
                 'handler': 'handler_feedback',
                 'next_step': 'step2',
                 'prev_step': None,
-                'options': None,
+                'options': 'make_back_button',
                 'action': None,
                 'result': None,
             },

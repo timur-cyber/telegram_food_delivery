@@ -19,7 +19,7 @@ def make_keyboard(values, width=1, back=False, cart=False):
     :return: ReplyKeyboardMarkup
     """
     # return telebot.types.ReplyKeyboardMarkup(row_width=width).add(*[telebot.types.KeyboardButton(item) for item in values])
-    keyboard = telebot.types.ReplyKeyboardMarkup(row_width=width)
+    keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=width)
     markups = list()
     if values:
         for item in values:
@@ -109,3 +109,25 @@ def make_cart_keyboard(*args, **kwargs):
     """
     buttons = ['✅Подтвердить', '🔁Очистить корзину']
     return make_keyboard(values=buttons, width=1, back=True)
+
+
+def make_share_contact_button(*args, **kwargs):
+    keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
+    contact_key = telebot.types.KeyboardButton("☎️ Поделиться контактом", request_contact=True)
+    keyboard.add(contact_key)
+    backbtn = telebot.types.KeyboardButton('🔙Назад')
+    keyboard.add(backbtn)
+    return keyboard
+
+
+def make_share_location_button(*args, **kwargs):
+    keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
+    contact_key = telebot.types.KeyboardButton("📍️ Отправить локацию", request_location=True)
+    keyboard.add(contact_key)
+    backbtn = telebot.types.KeyboardButton('🔙Назад')
+    keyboard.add(backbtn)
+    return keyboard
+
+
+def make_back_button(*args, **kwargs):
+    return make_keyboard(None, back=True)

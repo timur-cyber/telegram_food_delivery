@@ -12,11 +12,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os.path
 from pathlib import Path
 
-from .config import SECRET, DB_NAME,  DB_USER, DB_PWD, DB_HOST, DB_PORT, REGION
+from .config import SECRET, DB_NAME, DB_USER, DB_PWD, DB_HOST, DB_PORT, REGION
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -27,16 +26,9 @@ SECRET_KEY = SECRET
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = [
-#     '127.0.0.1',
-#     'localhost',
-#     '205a-84-54-76-39.in.ngrok.io',
-# ]
-
 ALLOWED_HOSTS = [
     '*'
 ]
-
 
 # Application definition
 
@@ -84,7 +76,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'djangoXtelegram.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -98,7 +89,6 @@ DATABASES = {
         'PORT': DB_PORT,
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -118,7 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -129,7 +118,6 @@ TIME_ZONE = REGION if REGION != 'None' else 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

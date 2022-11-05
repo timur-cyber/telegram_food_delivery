@@ -16,7 +16,11 @@
         <h2 class="second-header">Клиент: {{ order.user.first_name }}</h2>
         <h2 class="second-header">Номер: {{ order.user.phone_num }}</h2>
         <h2 class="second-header">Дата и время: {{ order.formatted_date }}</h2>
+        {% if "https" in order.address %}
+        <h2 class="second-header">Адрес: <a href="{{ order.address }}" target="_blank">Локация</a></h2>
+        {% else %}
         <h2 class="second-header">Адрес: {{ order.address }}</h2>
+        {% endif %}
         <h2 class="second-header">Статус: {{ order.status }}</h2>
         {% if order_items %}
         <ul class="order-list">

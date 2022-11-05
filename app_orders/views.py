@@ -1,9 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
+from django.test import Client
 
 from app_orders.models import Order, OrderItem
 
+client = Client()
 
 class AllOrdersView(View):
     def get(self, request):
@@ -56,6 +58,8 @@ def finish_order(request, id):
     order = Order.objects.get(id=id)
     order.status = 'Выполнен'
     order.save()
+    user_id = order.user.user_id
+    client.post('/bot/complete-order/', {'user_id': user_id, 'order_id': id})
     return redirect(request.META.get('HTTP_REFERER') or '/')
 
 
@@ -65,4 +69,6 @@ def cancel_order(request, id):
     order = Order.objects.get(id=id)
     order.status = 'Отменён'
     order.save()
+    user_id = order.user.user_id
+    client.post('/bot/cancel-order/', {'user_id': user_id, 'order_id': id})
     return redirect(request.META.get('HTTP_REFERER') or '/')

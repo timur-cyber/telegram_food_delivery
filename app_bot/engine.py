@@ -378,6 +378,19 @@ class BotEngine:
             self.send_message(user_id, text,
                               reply_markup=settings.SCENARIOS[user.scenario]['steps'][user.step]['options'])
 
+    def parse_location(self, data):
+        user_id = data['message']['from']['id']
+        latitude = data['message']['location']['latitude']
+        longitude = data['message']['location']['longitude']
+        user = TelegramState.objects.get(user_id=user_id)
+        step = settings.SCENARIOS[user.scenario]['steps'][user.step]
+        next_step = settings.SCENARIOS[user.scenario]['steps'][step['next_step']]
+        if step.get('location'):
+            link = f'https://www.google.com/maps/search/?api=1&query={latitude},{longitude}'
+            user.context['address'] = link
+            user.save()
+            self.continue_scenario(user, next_step, data)
+
     def handle_message(self, data: dict):
         """
         Метод обработки сообщений отправленных пользователем
@@ -386,7 +399,13 @@ class BotEngine:
         """
         if data.get('message'):
             user_id = data['message']['from']['id']
-            text = data['message']['text']
+            if data['message'].get('location'):
+                self.parse_location(data)
+                return
+            elif data['message'].get('contact'):
+                text = '+{}'.format(data['message']['contact']['phone_number'])
+            else:
+                text = data['message']['text']
             if self.user_in_scenario(user_id):
                 user = TelegramState.objects.get(user_id=user_id)
                 if text and any(item == text for item in settings.START_COMMANDS):
